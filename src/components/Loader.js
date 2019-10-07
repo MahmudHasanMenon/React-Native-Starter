@@ -1,24 +1,15 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
-import {
-  View,
-  Image,
-  Modal,
-  StyleSheet,
-} from 'react-native';
+import {PropTypes} from 'prop-types';
+import {View, Image, Modal, StyleSheet} from 'react-native';
 
 import colors from '../styles/colors';
 
 const Spinner = require('../img/loader.gif');
 
-const Loader = (props) => {
-  const { animationType, modalVisible } = props;
+const Loader = props => {
+  const {animationType, modalVisible} = props;
   return (
-    <Modal
-      animationType={animationType}
-      transparent
-      visible={modalVisible}
-    >
+    <Modal animationType={animationType} transparent visible={modalVisible}>
       <View style={styles.wrapper}>
         <View style={styles.loaderContainer}>
           <Image

@@ -1,13 +1,16 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {observer, inject} from 'mobx-react';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import colors from '../styles/colors';
 
 const AuthLoadingScreen = props => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const loadApp = async () => {
     try {
-      const {activeUser, loadActiveUser} = props.store.userStore;
-      await loadActiveUser();
-      const screen = activeUser.token !== '' ? 'App' : 'Auth';
+      const value = await AsyncStorage.getItem('phoneNumber');
+      console.log('phoneNumber...', value);
+      const screen = value !== null ? 'App' : 'Auth';
       props.navigation.navigate(screen);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -19,15 +22,19 @@ const AuthLoadingScreen = props => {
     loadApp();
   }, [loadApp]);
 
-  return <View style={styles.container} />;
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" color={colors.defaultButtonColor} />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',,
+    justifyContent: 'center',
   },
 });
 
-export default inject('store')(observer(AuthLoadingScreen));
+export default AuthLoadingScreen;

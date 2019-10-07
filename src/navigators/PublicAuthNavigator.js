@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 
 import SplashScreen from '../screens/SplashScreen'
 import LoginScreen from '../screens/LoginScreen'

@@ -1,102 +1,29 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import { createDrawerNavigator, createStackNavigator } from 'react-navigation'
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createStackNavigator } from 'react-navigation-stack'
 import customDrawerContentComponent from './CustomDrawerComponent'
 import { Icon } from 'native-base';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign'
-
-import MapScreen from '../screens/MapScreen'
-import LastSearchScreen from '../screens/LastSearchScreen'
-import FavoritePropertyScreen from '../screens/FavoritePropertyScreen'
+// import AntDesignIcon from 'react-native-vector-icons/AntDesign'
+import HomeScreen from '../screens/HomeScreen'
 import SettingsScreen from '../screens/SettingsScreen'
-import HouseDetailsScreen from '../screens/HouseDetailsScreen'
-import PropertyFormScreen from '../screens/PropertyFormScreen'
-import FilterSearchScreen from '../screens/FilterSearchScreen'
-import MyHouseListScreen from '../screens/MyHouseListScreen'
-import MyHouseDetailsScreen from '../screens/MyHouseDetailsScreen'
-import SubscriptionAreaScreen from '../screens/SubscriptionAreaScreen'
+import AboutScreen from '../screens/AboutScreen'
 
-const HomeStackNavigator = createStackNavigator({
-  LastSearch: {
-    screen: LastSearchScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  Map: {
-    screen: MapScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  HouseDetails: {
-    screen: HouseDetailsScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  FilterSearchScreen: {
-    screen: FilterSearchScreen,
+const AppStackNavigator = createStackNavigator({
+  HomeScreen: {
+    screen: HomeScreen,
     navigationOptions: () => ({
       header: null
     })
   }
-});
-
-const FavouriteStackNavigator = createStackNavigator({
-  FavoriteProperty: {
-    screen: FavoritePropertyScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  FavouriteHouseDetails: {
-    screen: HouseDetailsScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  }
-});
-
-const MyPropertyStackNavigator = createStackNavigator({
-  MyHouseListScreen: {
-    screen: MyHouseListScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  MyHouseDetailsScreen: {
-    screen: MyHouseDetailsScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  PropertyFormScreen: {
-    screen: PropertyFormScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  }
-});
+})
 
 export const AppDrawerNavigator = createDrawerNavigator({
-  HomeStackNavigator: {
-    screen: HomeStackNavigator,
-    navigationOptions: ({ navigation }) => ({
-        drawerLockMode: navigation.state.index > 0 ? 'locked-closed' : 'unlocked',
-        title: `Property`,
-        drawerIcon: ({ tintColor }) => (
-          <Icon name='ios-home' style={{ fontSize: 24, color: tintColor }} />
-        ),
-      })
-  },
-  FavouriteStackNavigator: {
-    screen: FavouriteStackNavigator,
-    navigationOptions: ({ navigation }) => ({
-      drawerLockMode: navigation.state.index > 0 ? 'locked-closed' : 'unlocked',
-      title: `Favorite Property`,
+  Home: {
+    screen: AppStackNavigator,
+    navigationOptions: () => ({
       drawerIcon: ({ tintColor }) => (
-        <Icon name='ios-bookmark' style={{ fontSize: 24, color: tintColor }} />
+        <Icon name='ios-home' style={{ fontSize: 24, color: tintColor }} />
       ),
     })
   },
@@ -108,21 +35,11 @@ export const AppDrawerNavigator = createDrawerNavigator({
       ),
     })
   },
-  Subscription: {
-    screen: SubscriptionAreaScreen,
+  About: {
+    screen: AboutScreen,
     navigationOptions: () => ({
       drawerIcon: ({ tintColor }) => (
-        <AntDesignIcon name='book' style={{ fontSize: 24, color: tintColor }} />
-      ),
-    })
-  },
-  MyPropertyStackNavigator: {
-    screen: MyPropertyStackNavigator,
-    navigationOptions: ({ navigation }) => ({
-      drawerLockMode: navigation.state.index > 0 ? 'locked-closed' : 'unlocked',
-      title: `My Properties`,
-      drawerIcon: ({ tintColor }) => (
-        <Icon name='ios-list' style={{ fontSize: 24, color: tintColor }} />
+        <Icon name='ios-help-circle' style={{ fontSize: 24, color: tintColor }} />
       ),
     })
   },
@@ -130,11 +47,11 @@ export const AppDrawerNavigator = createDrawerNavigator({
     drawerPosition: 'left',
     contentComponent: customDrawerContentComponent,
     drawerOpenRoute: 'DrawerOpen',
-    drawerCloseRoute: 'DrawerClose',
+    drawerCloseRoure: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle',
     drawerWidth: 300,
     contentOptions: {
-      activeTintColor: '#16a085',
+      activeTintColor: '#00bcd4',
       inactiveTintColor: '#919191',
       activeBackgroundColor: '#ebebeb',
       inactiveBackgroundColor: '#fff',

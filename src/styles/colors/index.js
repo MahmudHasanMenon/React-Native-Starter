@@ -1,7 +1,6 @@
 /**
- * Tenants Wireframe App
- * @author: Rahmat
- * @Url: https://www.tenants-wireframe.com
+ * React native Starter
+ * @author: Mahmud
  */
 
 export default {
@@ -28,5 +27,5 @@ export default {
   watermelon: '#ff6b81',
   appcolor: '#434C6B',
   defaultButtonColor: '#16a085',
-  activeColor: '#00bcd4'
+  activeColor: '#00bcd4',
 };

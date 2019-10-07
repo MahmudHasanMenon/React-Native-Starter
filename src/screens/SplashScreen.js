@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import {
-  View, StyleSheet, Animated, Dimensions,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, Animated, Dimensions} from 'react-native';
 
-const tenantImage = require('../img/rentu/splash-screen-logo.png');
+const tenantImage = require('../img/react-native-logo.png');
 
-const { height } = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
-const SplashScreen = (props) => {
+const SplashScreen = props => {
   const state = splashScreenHooks(props);
 
   return (
     <React.Fragment>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Animated.Image
           source={tenantImage}
-          style={{ ...styles.logo, opacity: state.logoOpacity }}
+          style={{...styles.logo, opacity: state.logoOpacity}}
           resizeMode="contain"
         />
       </View>
@@ -23,10 +21,15 @@ const SplashScreen = (props) => {
   );
 };
 
-const splashScreenHooks = (props) => {
+const splashScreenHooks = props => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [logoOpacity, setLogoOpacity] = useState(new Animated.Value(0));
-  const [titleMarginTop, setTitleMarginTop] = useState(new Animated.Value(height / 2));
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [titleMarginTop, setTitleMarginTop] = useState(
+    new Animated.Value(height / 2),
+  );
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     Animated.sequence([
       // animation by sequence
@@ -42,23 +45,22 @@ const splashScreenHooks = (props) => {
     ]).start(() => {
       props.navigation.navigate('LoginScreen');
     });
-  }, []);
+  }, [logoOpacity, props.navigation, titleMarginTop]);
 
   return {
     logoOpacity,
     setLogoOpacity,
     titleMarginTop,
-    setTitleMarginTop
+    setTitleMarginTop,
   };
 };
-
 
 const styles = StyleSheet.create({
   logo: {
     flex: 1,
     width: 300,
     height: 300,
-  }
+  },
 });
 
 export default SplashScreen;

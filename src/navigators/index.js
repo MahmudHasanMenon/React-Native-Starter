@@ -14,4 +14,4 @@ const AppSwitchNavigator = createSwitchNavigator({
   }
 })
 
-export const TenantsWireframeApp = createAppContainer(AppSwitchNavigator)
+export const ReactNativeStarterApp = createAppContainer(AppSwitchNavigator)

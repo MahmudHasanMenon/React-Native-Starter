@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {View, Text, Platform, TouchableOpacity} from 'react-native';
 import {Container, Form, Toast} from 'native-base';
 import OtpInputs from 'react-native-otp-inputs';
-import {isEmpty} from 'lodash';
 
 import styles from './styles/OtpScreen';
 import colors from '../styles/colors';
@@ -16,9 +15,17 @@ const Otp = props => {
 
   return (
     <Container>
-      <View style={{marginVertical: 40}}>
+      <View style={{marginVertical: 60}}>
+        <Text
+          style={{
+            marginHorizontal: 20,
+            size: 25,
+            fontWeight: 'bold',
+            color: 'green',
+          }}>
+          Please Input some Number to Navigate Next Screen
+        </Text>
         <Text style={styles.otpText}>OTP</Text>
-        {/* <Text style={styles.otpInfo}>Lorem ipsum dolor sit amet consectetur adipisicing elit</Text> */}
       </View>
 
       <Form style={styles.form}>
@@ -41,7 +48,7 @@ const Otp = props => {
               color: '#59cbbd',
             }}
             style={styles.otpInputs}
-            handleChange={code => state.setOtpNumber(code)}
+            handleChange={code => state.setOtp(code)}
             numberOfInputs={4}
           />
         </View>
@@ -65,12 +72,12 @@ const Otp = props => {
 };
 
 const otpScreenHooks = props => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [spinner, setSpinner] = useState(false);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [otp, setOtp] = useState('');
 
   const resendOtp = async () => {
-    console.log('heloooooo resend Otp');
-
     setSpinner(true);
     setTimeout(() => {
       setSpinner(false);
@@ -78,7 +85,7 @@ const otpScreenHooks = props => {
   };
 
   const onOtpPressSuccess = async () => {
-    if (!isEmpty(otp)) {
+    if (otp === '') {
       Toast.show({
         text: 'Otp is required',
         buttonText: 'okay',

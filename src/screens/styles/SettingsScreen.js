@@ -23,4 +23,13 @@ export default styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
+  textInput: {
+    padding: 0,
+    margin: 0,
+    flex: 1,
+    fontSize: 20,
+    borderBottomWidth: 1,
+    color: colors.gray02,
+    borderBottomColor: colors.defaultButtonColor,
+  },
 })

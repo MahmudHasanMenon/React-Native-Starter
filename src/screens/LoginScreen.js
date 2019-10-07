@@ -1,13 +1,11 @@
 import React, {useState, useRef} from 'react';
 import {View, Text, TextInput, Platform, Image} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Container, Form, Toast} from 'native-base';
-import _ from 'lodash';
 import styles from './styles/LoginScreen';
 
 import Button from '../components/buttons/Button';
 import Loader from '../components/Loader';
-
-const rentuImage = require('../img/rentu/splash-screen-logo.png');
 
 const LogIn = props => {
   const state = logInScreenHooks(props);
@@ -18,21 +16,19 @@ const LogIn = props => {
     <Container>
       <View
         style={{
+          flex: 1,
           justifyContent: 'center',
-          alignItems: 'center',
-          marginBottom: 20,
+          marginHorizontal: 20,
         }}>
-        <Image
-          source={rentuImage}
-          resizeMode="contain"
+        <Text
           style={{
-            height: 180,
-            width: 300,
-          }}
-        />
-      </View>
-
-      <View style={{marginHorizontal: 20}}>
+            size: 25,
+            fontWeight: 'bold',
+            color: 'green',
+            marginBottom: 30,
+          }}>
+          Please Input some Number to Navigate Next Screen
+        </Text>
         <Form>
           <View style={{flexDirection: 'row', marginHorizontal: 10}}>
             <Text style={styles.countryCode}>+880</Text>
@@ -51,7 +47,7 @@ const LogIn = props => {
               keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
               style={[styles.textInput]}
               returnKeyType="go"
-              onChangeText={state.setPhoneNumber}
+              onChangeText={value => state.setPhoneNumber(value)}
               value={state.phoneNumber}
             />
           </View>
@@ -66,12 +62,15 @@ const LogIn = props => {
 };
 
 const logInScreenHooks = props => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [spinner, setSpinner] = useState(false);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [phoneNumber, setPhoneNumber] = useState('');
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const textInput = useRef();
 
   const sendOtpScreen = async () => {
-    if (!_.isEmpty(PhoneNumber)) {
+    if (phoneNumber === '') {
       Toast.show({
         text: 'Phone Number is required',
         buttonText: 'Okay',
@@ -80,7 +79,7 @@ const logInScreenHooks = props => {
       });
     } else {
       setSpinner(true);
-
+      AsyncStorage.setItem('phoneNumber', JSON.stringify(phoneNumber));
       setTimeout(() => {
         setSpinner(false);
         props.navigation.navigate('OtpScreen');
