@@ -11,8 +11,8 @@ import {
   Title,
   Text,
 } from 'native-base';
-import Loader from '../components/Loader';
-import colors from '../styles/colors/index';
+import Loader from '../../components/Loader';
+import colors from '../../styles/colors/index';
 
 const HomeScreen = props => {
   const state = HomeScreenHooks(props);

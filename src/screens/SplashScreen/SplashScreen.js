@@ -1,41 +1,27 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Animated, Dimensions} from 'react-native';
+import {View, StyleSheet, Animated, Dimensions} from 'react-native';
 
-const successImage = require('../img/success.png');
+const tenantImage = require('../../img/react-native-logo.png');
 
 const {height} = Dimensions.get('window');
 
-const SuccessfullScreen = props => {
-  const state = successfullScreenHooks(props);
+const SplashScreen = props => {
+  const state = splashScreenHooks(props);
 
   return (
     <React.Fragment>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 0,
-        }}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Animated.Image
-          source={successImage}
+          source={tenantImage}
           style={{...styles.logo, opacity: state.logoOpacity}}
+          resizeMode="contain"
         />
-        <Text
-          style={{
-            fontSize: 30,
-            fontWeight: 'bold',
-            marginTop: 20,
-            marginBottom: 20,
-          }}>
-          Successfull
-        </Text>
       </View>
     </React.Fragment>
   );
 };
 
-const successfullScreenHooks = props => {
+const splashScreenHooks = props => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [logoOpacity, setLogoOpacity] = useState(new Animated.Value(0));
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -45,7 +31,6 @@ const successfullScreenHooks = props => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    // animations here
     Animated.sequence([
       // animation by sequence
       Animated.timing(logoOpacity, {
@@ -58,7 +43,7 @@ const successfullScreenHooks = props => {
         duration: 1000,
       }),
     ]).start(() => {
-      props.navigation.navigate('App');
+      props.navigation.navigate('LoginScreen');
     });
   }, [logoOpacity, props.navigation, titleMarginTop]);
 
@@ -72,9 +57,10 @@ const successfullScreenHooks = props => {
 
 const styles = StyleSheet.create({
   logo: {
-    width: 150,
-    height: 150,
+    flex: 1,
+    width: 300,
+    height: 300,
   },
 });
 
-export default SuccessfullScreen;
+export default SplashScreen;

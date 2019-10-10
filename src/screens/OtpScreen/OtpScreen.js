@@ -3,12 +3,12 @@ import {View, Text, Platform, TouchableOpacity} from 'react-native';
 import {Container, Form, Toast} from 'native-base';
 import OtpInputs from 'react-native-otp-inputs';
 
-import styles from './styles/OtpScreen';
-import colors from '../styles/colors';
+import styles from './style';
+import colors from '../../styles/colors';
 
-import Loader from '../components/Loader';
+import Loader from '../../components/Loader';
 
-import Button from '../components/buttons/Button';
+import Button from '../../components/buttons/Button';
 
 const Otp = props => {
   const state = otpScreenHooks(props);

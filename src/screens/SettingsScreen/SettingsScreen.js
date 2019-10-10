@@ -15,13 +15,13 @@ import {
 // import ImagePicker from 'react-native-image-crop-picker';
 // import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import styles from './styles/SettingsScreen';
-import colors from '../styles/colors';
+import styles from './style';
+import colors from '../../styles/colors';
 
-import ProfileAvatar from '../components/avatar/ProfileAvatar';
-import UpdateButton from '../components/buttons/Button';
+import ProfileAvatar from '../../components/avatar/ProfileAvatar';
+import UpdateButton from '../../components/buttons/Button';
 
-const userImg = require('../img/user2.jpg');
+const userImg = require('../../img/user2.jpg');
 
 const SettingsScreen = props => {
   const state = settingsScreenHooks(props);

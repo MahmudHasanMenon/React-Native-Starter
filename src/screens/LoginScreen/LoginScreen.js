@@ -2,10 +2,10 @@ import React, {useState, useRef} from 'react';
 import {View, Text, TextInput, Platform, Image} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Container, Form, Toast} from 'native-base';
-import styles from './styles/LoginScreen';
+import styles from './style';
 
-import Button from '../components/buttons/Button';
-import Loader from '../components/Loader';
+import Button from '../../components/buttons/Button';
+import Loader from '../../components/Loader';
 
 const LogIn = props => {
   const state = logInScreenHooks(props);

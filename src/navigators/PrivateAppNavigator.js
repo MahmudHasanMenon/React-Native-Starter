@@ -5,9 +5,9 @@ import { createStackNavigator } from 'react-navigation-stack'
 import customDrawerContentComponent from './CustomDrawerComponent'
 import { Icon } from 'native-base';
 // import AntDesignIcon from 'react-native-vector-icons/AntDesign'
-import HomeScreen from '../screens/HomeScreen'
-import SettingsScreen from '../screens/SettingsScreen'
-import AboutScreen from '../screens/AboutScreen'
+import HomeScreen from '../screens/HomeScreen/HomeScreen'
+import SettingsScreen from '../screens/SettingsScreen/SettingsScreen'
+import AboutScreen from '../screens/AboutScreen/AboutScreen'
 
 const AppStackNavigator = createStackNavigator({
   HomeScreen: {
